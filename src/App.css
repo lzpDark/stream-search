@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+.result-layout {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+    grid-gap: 1rem;
+    gap: 1rem;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+
+@media (width >= 30rem) {
+
+    /* md */
+    .result-layout {
+        grid-template-columns: repeat(4, 1fr);
+        /* 4 columns */
+    }
+}
+
+@media (width >= 40rem) {
+
+    /* lg */
+    .result-layout {
+        grid-template-columns: repeat(6, 1fr);
+        /* 6 columns */
+    }
+}
+
+.brand-text {
+    transform: scale(0.8) translate(20%, -110%);
+}
