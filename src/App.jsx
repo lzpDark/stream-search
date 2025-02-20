@@ -17,10 +17,9 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home/>} />
           <Route path="about" element={<About />} />
-          <Route path="dashboard" element={<>Dashboard Page</>} />
           <Route path='search' element={<Search/>} />
 
-          <Route path="*" element={<>nothing left</>} />
+          <Route path="*" element={<>nothing..</>} />
         </Route>
       </Routes>
     </div>

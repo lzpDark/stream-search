@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const SearchBar = ()=> { 
     return (
         <div className="p-3">
