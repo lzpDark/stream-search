@@ -2,32 +2,30 @@
 import { combine } from 'zustand/middleware'
 import { create } from 'zustand'
 
+const initialState = {
+    history: [Array(9).fill(null)],
+    currentMove: 0,
+}
+
+const action = (set, get) => {
+    return {
+        setHistory: (nextHistory) => {
+            set((state) => ({
+                history: nextHistory,
+            }))
+        },
+        setCurrentMove: (nextCurrentMove) => {
+            set((state) => ({
+                currentMove: nextCurrentMove,
+            }))
+        },
+    }
+}
+
 const useGameStore = create(
     combine(
-        {
-            history: [Array(9).fill(null)],
-            currentMove: 0,
-        },
-        (set, get) => {
-            return {
-                setHistory: (nextHistory) => {
-                    set((state) => ({
-                        history:
-                            typeof nextHistory === 'function'
-                                ? nextHistory(state.history)
-                                : nextHistory,
-                    }))
-                },
-                setCurrentMove: (nextCurrentMove) => {
-                    set((state) => ({
-                        currentMove:
-                            typeof nextCurrentMove === 'function'
-                                ? nextCurrentMove(state.currentMove)
-                                : nextCurrentMove,
-                    }))
-                },
-            }
-        },
+        initialState,
+        action,
     ),
 )
 
@@ -61,7 +59,7 @@ function Board({ xIsNext, squares, onPlay }) {
         <div>
             <p>State is: {gameInformation}</p>
             <p>winner in board is : {winner}</p>
-            <br/>
+            <br />
             <div
                 style={{
                     display: 'grid',
@@ -95,33 +93,33 @@ export default function Game() {
 
     return (
         <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            fontFamily: 'monospace',
-          }}
+            style={{
+                display: 'flex',
+                flexDirection: 'row',
+                fontFamily: 'monospace',
+            }}
         >
-          <div>
-            <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
-          </div>
-          <div style={{ marginLeft: '1rem' }}>
-            <ol>
-              {history.map((_, historyIndex) => {
-                const description =
-                  historyIndex > 0
-                    ? `Go to move #${historyIndex}`
-                    : 'Go to game start'
-    
-                return (
-                  <li key={historyIndex}>
-                    <button onClick={() => jumpTo(historyIndex)}>
-                      {description}
-                    </button>
-                  </li>
-                )
-              })}
-            </ol>
-          </div>
+            <div>
+                <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+            </div>
+            <div style={{ marginLeft: '1rem' }}>
+                <ol>
+                    {history.map((_, historyIndex) => {
+                        const description =
+                            historyIndex > 0
+                                ? `Go to move #${historyIndex}`
+                                : 'Go to game start'
+
+                        return (
+                            <li key={historyIndex}>
+                                <button onClick={() => jumpTo(historyIndex)}>
+                                    {description}
+                                </button>
+                            </li>
+                        )
+                    })}
+                </ol>
+            </div>
         </div>
     );
 
@@ -139,7 +137,7 @@ export default function Game() {
         const nextHistory = [...history.slice(0, currentMove + 1), nextSquares]
         setHistory(nextHistory)
         setCurrentMove(nextHistory.length - 1)
-      }
+    }
 
     function jumpTo(idx) {
         setCurrentMove(idx);
