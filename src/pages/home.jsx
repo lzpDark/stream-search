@@ -1,39 +1,29 @@
-import VideoCover from "../components/videocover";
-import SearchBar from "../components/searchbar";
 import {
     useQuery,
-} from '@tanstack/react-query'
+} from '@tanstack/react-query';
+import SearchBar from "../components/searchbar";
+import Videos from '../components/videos';
 
-const Videos = () => {
+
+
+const Home = () => {
+
     const { isPending, error, data } = useQuery({
-        queryKey: ['what-key'],
+        queryKey: ['videos'],
         queryFn: () =>
             fetch(`${import.meta.env.VITE_API_BASE_URL}/videos`).then((res) =>
                 res.json()),
     })
 
-    if (isPending) return 'Pending..';
-    if (error) return 'Error';
     return (
-        <div className="result-layout">
-            {data.map((item, idx) => {
-                return <VideoCover
-                    key={idx}
-                    title={item.title}
-                    cover={item.src}
-                    updateInformation={item.subtitle}
-                    ref={"/"}
-                />
-            })}
-        </div>
-    );
-}
-
-const Home = () => {
-    return (
-        <div>
-            <SearchBar />
-            <Videos />
+        <div className="flex flex-col">
+            <div className="flex justify-center search-bar">
+                <SearchBar />
+            </div>
+            <Videos isPending={isPending}
+                error={error}
+                data={data}  
+            />
         </div>
     );
 }

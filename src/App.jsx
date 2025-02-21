@@ -20,17 +20,17 @@ function App() {
 
     <div>
       <QueryClientProvider client={queryClient}>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path='search' element={<Search />} />
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path='search' element={<Search />} />
 
-          <Route path="*" element={<>nothing..</>} />
-          <Route path="/tictactoe" element={<Game />} />
-          <Route path="/demo" element={<Demo />} />
-        </Route>
-      </Routes>
+            <Route path="*" element={<>nothing..</>} />
+            <Route path="/tictactoe" element={<Game />} />
+            <Route path="/demo" element={<Demo />} />
+          </Route>
+        </Routes>
       </QueryClientProvider>
     </div>
   )
@@ -38,11 +38,13 @@ function App() {
 
 function Layout() {
   return (
-    <>
+    <div className='flex flex-col h-full'>
       <Header />
-      <Outlet />
-      <Footer />
-    </>
+      <main>
+        <Outlet />
+      </main>
+      <Footer/>
+    </div>
   );
 }
 

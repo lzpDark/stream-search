@@ -23,5 +23,21 @@
 }
 
 .brand-text {
-    transform: scale(0.6) translate(10%, -120%);
+    transform: scale(0.6) translate(-30%);
+}
+
+.search-bar {
+    position: sticky;
+    top: 30px;
+    left: 30px;
+    z-index: 10;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: aliceblue;
+    color: rgb(8, 8, 8);
+    text-align: center;
 }

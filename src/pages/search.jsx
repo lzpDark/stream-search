@@ -1,39 +1,32 @@
 import { useSearchParams } from "react-router";
 import SearchBar from "../components/searchbar";
-import { useEffect, useState } from "react";
-import VideoCover from "../components/videocover";
+import Videos from '../components/videos';
+import { useQuery } from "@tanstack/react-query";
 
 const Search = () => {
 
-    const [searchParams, setSearchParams] = useSearchParams();
-    let [result, setResult] = useState([]);
-    useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_BASE_URL}/search?q=${searchParams.get('q')}`)
-            .then(response => response.json())
-            .then(data => {
-                setResult(data);
-            });
-    }, []);
+    const [searchParams] = useSearchParams();
+
+    const {isPending, error, data} = useQuery({
+        queryKey: ['search'],
+        queryFn: ()=> fetch(`${import.meta.env.VITE_API_BASE_URL}/search?q=${searchParams.get('q')}`).then((res) =>
+            res.json()),
+    });
 
     return (
         <div className="flex flex-col">
-            <SearchBar />
-            <div className="p-5">
+            <div className="flex justify-center">
+                <SearchBar />
+            </div>
+            {!isPending && !error && <div className="p-5">
                 <h4>Search "{searchParams.get('q')}":</h4>
-                <p>Found: {result.length} videos...</p>
-            </div>
-            <div className="result-layout">
-                {
-                    result.map((item) => {
-                        return <VideoCover key={item.id}
-                            title={item.title}
-                            cover={item.src}
-                            updateInformation={item.subtitle}
-                            ref="/"
-                        />
-                    })
-                }
-            </div>
+                <p>Found: {data.length} videos...</p>
+            </div>}
+            <Videos 
+                isPending={isPending}
+                error={error}
+                data={data}
+            />
         </div>
     );
 }
