@@ -1,12 +1,14 @@
 import VideoCover from "../components/videocover";
 import SearchBar from "../components/searchbar";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"; 
 
 const Home = () => {
 
     const [videos, setVideos] = useState([]);
+ 
 
     useEffect(()=>{
+        
         const fetchData = async () => {
             try {
               const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/videos`);

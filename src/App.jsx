@@ -8,6 +8,7 @@ import Header from './components/header';
 import Footer from './components/footer';
 import Home from './pages/home';
 import Search from './pages/search';
+import Game from './tic-tac-toe/game';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route path='search' element={<Search/>} />
 
           <Route path="*" element={<>nothing..</>} />
+          <Route path="/tictactoe" element={<Game />} />
         </Route>
       </Routes>
     </div>
