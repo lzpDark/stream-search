@@ -1,12 +1,5 @@
 const About = ()=> {
 
-    const results = [];
-
-    function handleClick() {
-        results.push({});
-        console.log("results length: " + results.length)
-    }
-
     return (
         <>
             <p>This project is just a demo to practice some tech:</p>

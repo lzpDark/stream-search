@@ -33,6 +33,16 @@
     z-index: 10;
 }
 
+button {
+    background-color: aqua;
+    border-radius: 4em;
+}
+
+button:hover {
+    background-color: aquamarine;
+    cursor:pointer;
+}
+
 .footer {
     position: fixed;
     bottom: 0;

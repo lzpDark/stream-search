@@ -11,7 +11,7 @@ const Home = () => {
     const { isPending, error, data } = useQuery({
         queryKey: ['videos'],
         queryFn: () =>
-            fetch(`${import.meta.env.VITE_API_BASE_URL}/videos`).then((res) =>
+            fetch(`${import.meta.env.VITE_API_BASE_URL}/video`).then((res) =>
                 res.json()),
     })
 

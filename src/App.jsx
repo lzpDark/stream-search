@@ -10,6 +10,7 @@ import Home from './pages/home';
 import Search from './pages/search';
 import Game from './examples/game';
 import Demo from './examples/demo';
+import Manage from './pages/manage';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path='search' element={<Search />} />
+            <Route path='manage' element={<Manage />} />
 
             <Route path="*" element={<>nothing..</>} />
             <Route path="/tictactoe" element={<Game />} />
