@@ -11,6 +11,7 @@ import Search from './pages/search';
 import Game from './examples/game';
 import Demo from './examples/demo';
 import Manage from './pages/manage';
+import Chessboard from './examples/chess/chess'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ function App() {
             <Route path="*" element={<>nothing..</>} />
             <Route path="/tictactoe" element={<Game />} />
             <Route path="/demo" element={<Demo />} />
+            <Route path='/chess' element={<Chessboard />} />
           </Route>
         </Routes>
       </QueryClientProvider>
