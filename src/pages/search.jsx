@@ -1,17 +1,19 @@
 import { useSearchParams } from "react-router";
 import SearchBar from "../components/searchbar";
 import Videos from '../components/videos';
-import { useQuery } from "@tanstack/react-query";
+import useApi from '../shared/api'
 
 const Search = () => {
 
     const [searchParams] = useSearchParams();
+    const {isPending, error, data} = useApi.searchVideos(searchParams.get('q'));
 
-    const {isPending, error, data} = useQuery({
-        queryKey: ['search'],
-        queryFn: ()=> fetch(`${import.meta.env.VITE_API_BASE_URL}/search?q=${searchParams.get('q')}`).then((res) =>
-            res.json()),
-    });
+    if(isPending) {
+        return <>searching..</>;
+    }
+    if(error) {
+        return <>Error</>;
+    }
 
     return (
         <div className="flex flex-col">
@@ -23,8 +25,6 @@ const Search = () => {
                 <p>Found: {data.length} videos...</p>
             </div>}
             <Videos 
-                isPending={isPending}
-                error={error}
                 data={data}
             />
         </div>

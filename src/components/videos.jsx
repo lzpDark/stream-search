@@ -1,8 +1,6 @@
 import VideoCover from "../components/videocover";
 
-const Videos = ({isPending, error, data}) => {
-    if (isPending) return 'Pending..';
-    if (error) return 'Error';
+const Videos = ({data}) => {
     return (
         <div className="result-layout">
             {data.map((item, idx) => {
@@ -11,7 +9,7 @@ const Videos = ({isPending, error, data}) => {
                     title={item.title}
                     cover={item.src}
                     updateInformation={item.subtitle}
-                    ref={"/"}
+                    src={"/"}
                 />
             })}
         </div>

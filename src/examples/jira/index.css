@@ -1,0 +1,7 @@
+.boardStyles {
+	display: 'flex';
+	justify-content: 'center';
+	gap: 'space.200';
+	flex-direction: 'row';
+	height: '480px';
+} 

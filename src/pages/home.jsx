@@ -1,29 +1,20 @@
-import {
-    useQuery,
-} from '@tanstack/react-query';
+import useApi from '../shared/api'
 import SearchBar from "../components/searchbar";
 import Videos from '../components/videos';
-
-
+ 
 
 const Home = () => {
 
-    const { isPending, error, data } = useQuery({
-        queryKey: ['videos'],
-        queryFn: () =>
-            fetch(`${import.meta.env.VITE_API_BASE_URL}/video`).then((res) =>
-                res.json()),
-    })
+    const { isPending, error, data } = useApi.fetchVideos();
 
+    if (isPending) return 'loading..';
+    if (error) return 'Error';
     return (
         <div className="flex flex-col">
             <div className="flex justify-center search-bar">
                 <SearchBar />
             </div>
-            <Videos isPending={isPending}
-                error={error}
-                data={data}  
-            />
+            <Videos data={data}/>
         </div>
     );
 }

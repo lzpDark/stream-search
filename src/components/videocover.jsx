@@ -1,12 +1,12 @@
 const VideoCover = ({
-    title, updateInformation, cover, ref
+    title, updateInformation, cover, src
 })=> {
     return (
         <div>
             <img src={cover} alt={title}>
             </img>
             <p>{updateInformation}</p>
-            <a href={ref}>{title}</a>
+            <a href={src}>{title}</a>
         </div>
     );
 }

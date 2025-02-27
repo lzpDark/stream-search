@@ -13,6 +13,7 @@ import Demo from './examples/demo';
 import Manage from './pages/manage';
 import Chessboard from './examples/chess/chess'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import BoardExample from './examples/jira/example';
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="/tictactoe" element={<Game />} />
             <Route path="/demo" element={<Demo />} />
             <Route path='/chess' element={<Chessboard />} />
+            <Route path='/jira' element={<BoardExample/>} />
           </Route>
         </Routes>
       </QueryClientProvider>
