@@ -1,7 +1,7 @@
 import useApi from '../shared/api'
 import SearchBar from "../components/searchbar";
 import Videos from '../components/videos';
- 
+
 
 const Home = () => {
 
@@ -11,10 +11,11 @@ const Home = () => {
     if (error) return 'Error';
     return (
         <div className="flex flex-col">
+            <h1 data-test="hero-heading">enjoy videos</h1>
             <div className="flex justify-center search-bar">
                 <SearchBar />
             </div>
-            <Videos data={data}/>
+            <Videos data={data} />
         </div>
     );
 }

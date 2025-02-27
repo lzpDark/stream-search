@@ -3,7 +3,6 @@ import {
     useQuery,
 } from '@tanstack/react-query';
 
-
 const addVideo = (uniqueOpsId, body)=> {
     const [isPending, setIsPending] = useState(false);
     const [error, setError] = useState(null);
@@ -60,8 +59,6 @@ const searchVideos = (search)=> {
         data,
     }
 }
-
-
 
 export default {
     addVideo,

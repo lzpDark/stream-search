@@ -10,13 +10,13 @@ const Header = () => {
                     <nav>
                         <ul className="flex gap-10 ml-4">
                             <li>
-                                <a href="/trends">Trends</a>
+                                <a data-test="data-trends" href="/trends">Trends</a>
                             </li>
                             <li>
-                                <a href="/recent">Recent</a>
+                                <a data-test="data-recent" href="/recent">Recent</a>
                             </li>
                             <li>
-                                <a href="/about">About</a>
+                                <a data-test="data-about" href="/about">About</a>
                             </li>
                         </ul>
                     </nav>
